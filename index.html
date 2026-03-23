@@ -1,144 +1,255 @@
-<!DOCTYPE html><html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Happy Birthday SHWETA ❤️</title><link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet"><style>
+<title>For Shweta ❤️</title>
+
+<style>
+:root { --primary: #ff4d6d; --bg: #fff0f3; }
+
 body {
     margin: 0;
     font-family: 'Poppins', sans-serif;
-    background: linear-gradient(135deg, #ff758c, #ff7eb3);
-    overflow-x: hidden;
-    color: white;
+    background: var(--bg);
+    overflow: hidden;
+    text-align: center;
+    transition: background 2s;
+}
+
+/* Screens */
+.screen {
+    display: none;
+    height: 100vh;
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    animation: fadeIn 0.8s;
+}
+
+#lock { display: flex; background: #ffb3c1; z-index: 1000; }
+
+/* Card */
+.card {
+    background: rgba(255,255,255,0.8);
+    backdrop-filter: blur(10px);
+    padding: 30px;
+    border-radius: 30px;
+    box-shadow: 0 10px 30px rgba(255,77,109,0.2);
+}
+
+/* Inputs */
+input {
+    padding: 12px;
+    border-radius: 15px;
+    border: 2px solid var(--primary);
+    width: 80%;
+    margin-bottom: 15px;
     text-align: center;
 }
 
-.container {
-    padding: 20px;
+/* Buttons */
+button {
+    background: var(--primary);
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 50px;
+    cursor: pointer;
 }
 
-h1 {
-    font-size: 3em;
-    animation: glow 2s infinite alternate;
+/* Gift */
+.gift-box {
+    font-size: 7rem;
+    cursor: pointer;
+    animation: shake 0.5s infinite;
 }
 
-@keyframes glow {
-    from { text-shadow: 0 0 10px white; }
-    to { text-shadow: 0 0 30px yellow; }
+@keyframes shake {
+    0% { transform: rotate(-5deg); }
+    100% { transform: rotate(5deg); }
 }
 
-.shayari {
-    margin: 25px;
-    font-size: 1.3em;
-    line-height: 2;
-    animation: fadeIn 3s ease-in-out;
+/* Polaroid */
+.polaroid {
+    background: white;
+    padding: 15px 15px 40px;
+    border-radius: 5px;
 }
 
-.gallery {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 20px;
-    padding: 20px;
-}
-
-.frame {
-    border-radius: 20px;
-    overflow: hidden;
-    box-shadow: 0 15px 25px rgba(0,0,0,0.4);
-    transition: transform 0.4s, box-shadow 0.4s;
-}
-
-.frame:hover {
-    transform: scale(1.08) rotate(1deg);
-    box-shadow: 0 20px 40px rgba(0,0,0,0.6);
-}
-
-.frame img {
+.polaroid img {
     width: 100%;
-    height: 280px;
+    height: 350px;
     object-fit: cover;
 }
 
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(40px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-button {
-    padding: 12px 25px;
-    border: none;
-    border-radius: 25px;
-    background: white;
-    color: #ff4e50;
-    font-weight: bold;
-    cursor: pointer;
-    margin-top: 20px;
-    font-size: 16px;
-}
-
-button:hover {
-    background: #ffe6ec;
-}
-
-.heart {
+/* Floating */
+.floating {
     position: fixed;
-    color: red;
-    animation: float 5s linear infinite;
+    animation: fly 6s linear forwards;
 }
 
-@keyframes float {
-    from { transform: translateY(100vh); opacity: 1; }
-    to { transform: translateY(-10vh); opacity: 0; }
+@keyframes fly {
+    to { transform: translateY(-110vh); opacity: 0; }
 }
 
-</style></head>
-<body><div class="container">
-    <h1>Happy Birthday My Bestie ❤️</h1><div class="shayari">
-    Tu meri zindagi ka wo hissa hai,
-    jise lafzon mein bayaan karna mushkil hai...
-    
-    Teri hasi mein meri khushi basi hai,
-    jaise roshni mein subah ka sukoon basi hai...
-    
-    Tu saath ho toh duniya bhi apni lagti hai,
-    warna yeh mehfil bhi adhuri si lagti hai...
-    
-    Tere bina sab kuch hote hue bhi kuch nahi,
-    aur tu ho toh lagta hai kuch bhi kam nahi...
-    
-    Janamdin par bas itni dua hai meri,
-    tu hamesha muskuraati rahe... aur meri rahe 💖
-</div>
+/* Fade */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+</style>
+</head>
 
-<button onclick="playMusic()">Play Our Song 🎶</button>
+<body>
 
-<audio id="song">
-    <source src="your-song-link.mp3" type="audio/mpeg">
+<audio id="song" loop>
+<source src="song.mp3">
 </audio>
 
-<div class="gallery">
-    <div class="frame"><img src="photo1.jpg"></div> 
-    <div class="frame"><img src="photo2.jpg"></div>
-    <div class="frame"><img src="photo3.jpg"></div>
-    <div class="frame"><img src="photo4.jpg"></div>
+<!-- LOCK -->
+<div id="lock" class="screen">
+<div class="card">
+<h2>Enter Secret Code</h2>
+<input type="tel" id="pass" placeholder="****">
+<button onclick="checkPass()">Unlock ✨</button>
+</div>
 </div>
 
-</div><script>
-function playMusic() {
-    document.getElementById("song").play();
+<!-- GIFT -->
+<div id="gift" class="screen">
+<div class="gift-box" onclick="openGift()">🎁</div>
+<h2>Tap the gift 🎁</h2>
+</div>
+
+<!-- MENU -->
+<div id="menu" class="screen">
+<h1>Happy Birthday ❤️</h1>
+<button onclick="openPage('shayari')">📝 Note</button>
+<button onclick="openPage('photos')">📸 Photos</button>
+<button onclick="openPage('video')">🎥 Video</button>
+</div>
+
+<!-- SHAYARI -->
+<div id="shayari" class="screen">
+<button onclick="back()">⬅</button>
+<div class="card">
+<div id="text"></div>
+</div>
+</div>
+
+<!-- PHOTOS -->
+<div id="photos" class="screen">
+<button onclick="back()">⬅</button>
+<div class="polaroid">
+<img id="slide" src="photo1.jpg">
+</div>
+</div>
+
+<!-- 🎬 VIDEO PAGE -->
+<div id="video" class="screen" style="background:black;">
+<button onclick="back()" style="position:absolute;top:20px;left:20px;">⬅</button>
+
+<video id="bdayVideo" autoplay muted playsinline
+style="width:100%;height:100%;object-fit:cover;opacity:0;transition:2s;">
+<source src="video.mp4">
+</video>
+
+<div id="videoText" style="
+position:absolute;
+bottom:15%;
+width:100%;
+color:white;
+font-size:24px;
+opacity:0;
+transition:2s;">
+For You Shweta ❤️
+</div>
+</div>
+
+<script>
+
+let images = ["photo1.jpg","photo2.jpg","photo3.jpg"];
+let index = 0;
+let i = 0;
+
+const msg = `Happy Birthday Shweta ❤️
+You are special 💖`;
+
+function checkPass(){
+    if(document.getElementById('pass').value === "1203"){
+        lock.style.display = "none";
+        gift.style.display = "flex";
+    }
 }
 
-// floating hearts animation
-setInterval(() => {
-    const heart = document.createElement("div");
-    heart.classList.add("heart");
-    heart.innerHTML = "❤️";
-    heart.style.left = Math.random() * 100 + "vw";
-    heart.style.fontSize = Math.random() * 20 + 10 + "px";
-    document.body.appendChild(heart);
+function openGift(){
+    gift.style.display = "none";
+    menu.style.display = "flex";
+    song.play();
+    startHearts();
 
     setTimeout(() => {
-        heart.remove();
-    }, 5000);
-}, 500);
-</script></body>
+        openPage('video'); // auto video 🎬
+    }, 2000);
+}
+
+function openPage(p){
+    document.querySelectorAll('.screen').forEach(s => s.style.display = 'none');
+    document.getElementById(p).style.display = 'flex';
+
+    if(p === "video"){
+        let vid = document.getElementById("bdayVideo");
+        let text = document.getElementById("videoText");
+
+        vid.currentTime = 0;
+        vid.play();
+
+        setTimeout(()=>{
+            vid.style.opacity = 1;
+            text.style.opacity = 1;
+        },300);
+    }
+}
+
+function back(){
+    document.querySelectorAll('.screen').forEach(s => s.style.display = 'none');
+    menu.style.display = "flex";
+
+    let vid = document.getElementById("bdayVideo");
+    if(vid){
+        vid.pause();
+        vid.style.opacity = 0;
+    }
+
+    document.getElementById("videoText").style.opacity = 0;
+}
+
+/* slideshow */
+setInterval(()=>{
+    let img = document.getElementById("slide");
+    if(img){
+        index = (index+1)%images.length;
+        img.src = images[index];
+    }
+},3000);
+
+/* hearts */
+function startHearts(){
+    setInterval(()=>{
+        let h = document.createElement("div");
+        h.innerHTML = "❤️";
+        h.className = "floating";
+        h.style.left = Math.random()*100+"vw";
+        h.style.top = "100vh";
+        document.body.appendChild(h);
+        setTimeout(()=>h.remove(),6000);
+    },300);
+}
+
+</script>
+
+</body>
 </html>
