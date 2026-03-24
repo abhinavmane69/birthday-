@@ -1,255 +1,215 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>For Shweta ❤️</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For Shweta ❤️</title>
+    <style>
+        :root { --primary: #ff4d6d; --bg: #fff0f3; }
+        body { margin: 0; font-family: 'Poppins', sans-serif; background: var(--bg); overflow: hidden; text-align: center; transition: background 2s; }
+        
+        /* Screens */
+        .screen { display: none; height: 100vh; width: 100%; flex-direction: column; align-items: center; justify-content: center; position: fixed; animation: fadeIn 0.8s; }
+        #lock { display: flex; background: #ffb3c1; z-index: 1000; }
+        
+        /* Glassmorphism UI */
+        .card { background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(10px); padding: 30px; border-radius: 30px; box-shadow: 0 10px 30px rgba(255, 77, 109, 0.2); width: 85%; max-width: 400px; position: relative; }
+        
+        /* Buttons & Inputs */
+        input { padding: 12px; border-radius: 15px; border: 2px solid var(--primary); width: 80%; margin-bottom: 15px; text-align: center; font-size: 1.1rem; outline: none; }
+        button { background: var(--primary); color: white; border: none; padding: 12px 25px; border-radius: 50px; font-weight: bold; cursor: pointer; transition: 0.3s; margin: 10px; box-shadow: 0 5px 15px rgba(255, 77, 109, 0.4); }
+        button:hover { transform: scale(1.05); background: #ff758f; }
+        .back { position: absolute; top: 20px; left: 20px; z-index: 100; padding: 10px 15px; }
 
-<style>
-:root { --primary: #ff4d6d; --bg: #fff0f3; }
+        /* Animated Gift */
+        .gift-box { font-size: 7rem; cursor: pointer; animation: shake 0.5s infinite; display: inline-block; }
+        @keyframes shake { 0% { transform: rotate(-5deg); } 100% { transform: rotate(5deg); } }
 
-body {
-    margin: 0;
-    font-family: 'Poppins', sans-serif;
-    background: var(--bg);
-    overflow: hidden;
-    text-align: center;
-    transition: background 2s;
-}
+        /* Photo Polaroid Style */
+        .polaroid { background: white; padding: 15px 15px 40px 15px; box-shadow: 0 10px 25px rgba(0,0,0,0.2); border-radius: 5px; transform: rotate(-2deg); transition: 0.5s; width: 80%; max-width: 300px; }
+        .polaroid img { width: 100%; border-radius: 2px; height: 350px; object-fit: cover; transition: opacity 0.5s; }
 
-/* Screens */
-.screen {
-    display: none;
-    height: 100vh;
-    width: 100%;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    position: fixed;
-    animation: fadeIn 0.8s;
-}
+        /* Video Player */
+        video { border-radius: 15px; width: 100%; box-shadow: 0 5px 15px rgba(0,0,0,0.3); }
 
-#lock { display: flex; background: #ffb3c1; z-index: 1000; }
+        /* Floating Elements */
+        .floating { position: fixed; pointer-events: none; z-index: 1; animation: fly 6s linear forwards; }
+        @keyframes fly { to { transform: translateY(-110vh) rotate(360deg); opacity: 0; } }
 
-/* Card */
-.card {
-    background: rgba(255,255,255,0.8);
-    backdrop-filter: blur(10px);
-    padding: 30px;
-    border-radius: 30px;
-    box-shadow: 0 10px 30px rgba(255,77,109,0.2);
-}
-
-/* Inputs */
-input {
-    padding: 12px;
-    border-radius: 15px;
-    border: 2px solid var(--primary);
-    width: 80%;
-    margin-bottom: 15px;
-    text-align: center;
-}
-
-/* Buttons */
-button {
-    background: var(--primary);
-    color: white;
-    border: none;
-    padding: 12px 25px;
-    border-radius: 50px;
-    cursor: pointer;
-}
-
-/* Gift */
-.gift-box {
-    font-size: 7rem;
-    cursor: pointer;
-    animation: shake 0.5s infinite;
-}
-
-@keyframes shake {
-    0% { transform: rotate(-5deg); }
-    100% { transform: rotate(5deg); }
-}
-
-/* Polaroid */
-.polaroid {
-    background: white;
-    padding: 15px 15px 40px;
-    border-radius: 5px;
-}
-
-.polaroid img {
-    width: 100%;
-    height: 350px;
-    object-fit: cover;
-}
-
-/* Floating */
-.floating {
-    position: fixed;
-    animation: fly 6s linear forwards;
-}
-
-@keyframes fly {
-    to { transform: translateY(-110vh); opacity: 0; }
-}
-
-/* Fade */
-@keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-}
-</style>
+        /* Text Styling */
+        .typing { font-size: 1.1rem; color: #590d22; line-height: 1.8; font-style: italic; font-weight: 500; text-align: left; }
+        
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 </head>
-
 <body>
 
-<audio id="song" loop>
-<source src="song.mp3">
+<audio id="song" loop preload="auto">
+    <source src="song.mp3" type="audio/mpeg">
 </audio>
 
-<!-- LOCK -->
 <div id="lock" class="screen">
-<div class="card">
-<h2>Enter Secret Code</h2>
-<input type="tel" id="pass" placeholder="****">
-<button onclick="checkPass()">Unlock ✨</button>
-</div>
+    <div class="card">
+        <h2>🔒 Secret Access</h2>
+        <p style="color: var(--primary); font-size: 0.9rem;">Enter the special 4-digit code</p>
+        <input type="tel" id="pass" placeholder="****" maxlength="4">
+        <button onclick="checkPass()">Unlock Magic ✨</button>
+    </div>
 </div>
 
-<!-- GIFT -->
 <div id="gift" class="screen">
-<div class="gift-box" onclick="openGift()">🎁</div>
-<h2>Tap the gift 🎁</h2>
+    <div class="gift-box" onclick="openGift()">🎁</div>
+    <h2 style="color: var(--primary); margin-top: 20px;">For the birthday girl...</h2>
+    <p>Tap the box to see what's inside!</p>
 </div>
 
-<!-- MENU -->
 <div id="menu" class="screen">
-<h1>Happy Birthday ❤️</h1>
-<button onclick="openPage('shayari')">📝 Note</button>
-<button onclick="openPage('photos')">📸 Photos</button>
-<button onclick="openPage('video')">🎥 Video</button>
+    <h1 style="color: var(--primary); margin-bottom: 20px;">Happy Birthday, Shweta! ❤️</h1>
+    <button onclick="openPage('shayari')">📝 A Note for You</button>
+    <button onclick="openPage('photos')">📸 Memories</button>
+    <button onclick="openPage('videoPage')">🎥 Special Video</button>
+    <button onclick="share()">📱 Share</button>
 </div>
 
-<!-- SHAYARI -->
-<div id="shayari" class="screen">
-<button onclick="back()">⬅</button>
-<div class="card">
-<div id="text"></div>
-</div>
-</div>
-
-<!-- PHOTOS -->
-<div id="photos" class="screen">
-<button onclick="back()">⬅</button>
-<div class="polaroid">
-<img id="slide" src="photo1.jpg">
-</div>
+<div class="screen" id="shayari">
+    <button class="back" onclick="back()">⬅</button>
+    <div class="card">
+        <div class="typing" id="text"></div>
+    </div>
 </div>
 
-<!-- 🎬 VIDEO PAGE -->
-<div id="video" class="screen" style="background:black;">
-<button onclick="back()" style="position:absolute;top:20px;left:20px;">⬅</button>
-
-<video id="bdayVideo" autoplay muted playsinline
-style="width:100%;height:100%;object-fit:cover;opacity:0;transition:2s;">
-<source src="VID_20260306_144542.mp4"
-type="video/mp4">
-</video>
-
-<div id="videoText" style="
-position:absolute;
-bottom:15%;
-width:100%;
-color:white;
-font-size:24px;
-opacity:0;
-transition:2s;">
-For You Shweta ❤️
+<div class="screen" id="photos">
+    <button class="back" onclick="back()">⬅</button>
+    <div class="polaroid">
+        <img id="slide" src="photo1.jpg.jpeg">
+        <p style="margin-top: 15px; font-family: 'Brush Script MT', cursive; font-size: 1.4rem; color: #333;">Beautiful Moments</p>
+    </div>
 </div>
+
+<div class="screen" id="videoPage">
+    <button class="back" onclick="backToMenu()">⬅</button>
+    <div class="card">
+        <video id="birthdayVideo" controls>
+            <source src="VID_20260306_144542.mp4" type="video/mp4">
+        </video>
+        <p style="margin-top: 15px; color: var(--primary); font-weight: bold;">Press Play! ▶️</p>
+    </div>
 </div>
 
 <script>
+// IMAGES DATA
+let images = [
+    "photo1.jpg.jpeg", "photo2.jpg.jpeg", "photo3.jpg.jpeg", "photo4.jpg.jpeg",
+    "IMG-20260311-WA0143.jpg", "IMG_20260119_142925.jpg", "IMG_20260221_121246.jpg",
+    "IMG_20260221_131914.jpg", "IMG_20260226_092224.jpg", "MVIMG_20260310_165915.jpg",
+    "Snapchat-1157924051.jpg"
+];
 
-let images = ["photo1.jpg","photo2.jpg","photo3.jpg"];
-let index = 0;
-let i = 0;
+let i = 0, index = 0;
+const msg = `Ek ladki hai… thodi si pagal, thodi si pyaari si 💫\nAaj uska birthday hai… meri duniya ki sabse khaas si 🎂✨\n\nUski hasi mein jaise khushiyon ka jahaan basa ho 😊🌸\nAur uske hone se hi mera har din haseen bana ho 💖\n\nPagli kehti hai "main itni bhi special nahi…" 😌\nPar kaise samjhau use…\nMere liye wo meri sabse khoobsurat aadat hai 💞\n\nHappy Birthday Shweta! 🎉💖\nHamesha aise hi haste rehna… 🌙✨`;
 
-const msg = `Happy Birthday Shweta ❤️
-You are special 💖`;
-
+// 1. Password Verification
 function checkPass(){
     if(document.getElementById('pass').value === "1203"){
-        lock.style.display = "none";
-        gift.style.display = "flex";
+        document.getElementById('lock').style.display = 'none';
+        document.getElementById('gift').style.display = 'flex';
+    } else {
+        alert("Wrong code! 😜 Hint: 1203");
     }
 }
 
+// 2. Open Gift
 function openGift(){
-    gift.style.display = "none";
-    menu.style.display = "flex";
-    song.play();
+    document.getElementById('gift').style.display = 'none';
+    document.getElementById('menu').style.display = 'flex';
+    document.getElementById('song').play().catch(e => console.log("Music pending click"));
     startHearts();
-
-    setTimeout(() => {
-        openPage('video'); // auto video 🎬
-    }, 2000);
 }
 
+// 3. Navigation
 function openPage(p){
     document.querySelectorAll('.screen').forEach(s => s.style.display = 'none');
     document.getElementById(p).style.display = 'flex';
+    
+    // Manage Audio/Video clash
+    if(p === "videoPage"){
+        document.getElementById('song').pause();
+    } else {
+        document.getElementById('birthdayVideo').pause();
+        document.getElementById('song').play();
+    }
 
-    if(p === "video"){
-        let vid = document.getElementById("bdayVideo");
-        let text = document.getElementById("videoText");
-
-        vid.currentTime = 0;
-        vid.play();
-
-        setTimeout(()=>{
-            vid.style.opacity = 1;
-            text.style.opacity = 1;
-        },300);
+    if(p === "shayari") {
+        i = 0;
+        document.getElementById('text').innerHTML = "";
+        typeText();
     }
 }
 
 function back(){
     document.querySelectorAll('.screen').forEach(s => s.style.display = 'none');
-    menu.style.display = "flex";
-
-    let vid = document.getElementById("bdayVideo");
-    if(vid){
-        vid.pause();
-        vid.style.opacity = 0;
-    }
-
-    document.getElementById("videoText").style.opacity = 0;
+    document.getElementById('menu').style.display = 'flex';
 }
 
-/* slideshow */
-setInterval(()=>{
-    let img = document.getElementById("slide");
-    if(img){
-        index = (index+1)%images.length;
-        img.src = images[index];
-    }
-},3000);
+function backToMenu(){
+    document.getElementById('birthdayVideo').pause();
+    back();
+}
 
-/* hearts */
+// 4. Typing Effect
+function typeText(){
+    let el = document.getElementById('text');
+    if(i < msg.length){
+        el.innerHTML += (msg[i] === "\n") ? "<br>" : msg[i];
+        i++;
+        setTimeout(typeText, 50);
+    }
+}
+
+// 5. Slideshow
+setInterval(() => {
+    let img = document.getElementById('slide');
+    if(img && document.getElementById('photos').style.display === 'flex'){
+        img.style.opacity = 0;
+        setTimeout(() => {
+            index = (index + 1) % images.length;
+            img.src = images[index];
+            img.style.opacity = 1;
+        }, 500);
+    }
+}, 3000);
+
+// 6. Floating Hearts & Background
 function startHearts(){
-    setInterval(()=>{
-        let h = document.createElement("div");
-        h.innerHTML = "❤️";
-        h.className = "floating";
-        h.style.left = Math.random()*100+"vw";
-        h.style.top = "100vh";
+    setInterval(() => {
+        let h = document.createElement('div');
+        h.innerHTML = ['❤️','💖','✨','🌸','🎈'][Math.floor(Math.random()*5)];
+        h.className = 'floating';
+        h.style.left = Math.random()*100 + 'vw';
+        h.style.top = '100vh';
+        h.style.fontSize = (Math.random()*20 + 15) + 'px';
         document.body.appendChild(h);
-        setTimeout(()=>h.remove(),6000);
-    },300);
+        setTimeout(() => h.remove(), 6000);
+    }, 400);
 }
 
+// Sparkle on click
+document.body.addEventListener("click", e => {
+    let s = document.createElement('div');
+    s.innerHTML = '✨';
+    s.style.position = 'fixed';
+    s.style.left = e.clientX + 'px';
+    s.style.top = e.clientY + 'px';
+    s.style.pointerEvents = 'none';
+    document.body.appendChild(s);
+    setTimeout(() => s.remove(), 600);
+});
+
+function share(){
+    let text = "I made a surprise for Shweta's Birthday! ❤️";
+    window.open(`https://wa.me/?text=${encodeURIComponent(text + " " + window.location.href)}`);
+}
 </script>
 
 </body>
